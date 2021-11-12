@@ -30,7 +30,7 @@ class ScreenConfig {
       background = Colors.white,
       onPrimary = const Color(0xFFACB4B4);
 
-  read(BuildContext context) {
+  static read(BuildContext context) {
     gridHeight = (MediaQuery.of(context)
             .size
             .height /* -
@@ -60,14 +60,14 @@ class ScreenConfig {
       fontSize: gridHeight! * 2,
     );
     mulishH4 = GoogleFonts.mulish(
-        fontSize: gridHeight! * 2.4, fontWeight: FontWeight.w900);
+        fontSize: gridHeight! * 2, fontWeight: FontWeight.w600);
     mulishH3 = GoogleFonts.mulish(
-        fontSize: gridHeight! * 3, fontWeight: FontWeight.w800);
+        fontSize: gridHeight! * 2.1, fontWeight: FontWeight.w800);
 
     mulishH2 = GoogleFonts.mulish(
-        fontSize: gridHeight! * 3.75, fontWeight: FontWeight.w800);
+        fontSize: gridHeight! * 2.3, fontWeight: FontWeight.w800);
     mulishH1 = GoogleFonts.mulish(
-        fontSize: gridHeight! * 4, fontWeight: FontWeight.w800);
+        fontSize: gridHeight! * 2.5, fontWeight: FontWeight.w800);
 
     blackH2 = TextStyle(
         fontWeight: FontWeight.w600,

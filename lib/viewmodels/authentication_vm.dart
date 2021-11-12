@@ -7,11 +7,7 @@ class AuthenticationVM with ChangeNotifier {
   store(String? userId, String? jwtToken, String? userName, String? email,
       String? imageUrl) {
     _userCredModel = UserCredModel(
-        imageUrl: imageUrl,
-        userId: userId,
-        jwtToken: jwtToken,
-        userName: userName,
-        email: email);
+        imageUrl: imageUrl, userId: userId, jwtToken: jwtToken, email: email);
 
     print("----------------$userId-----------------");
     notifyListeners();
@@ -20,6 +16,6 @@ class AuthenticationVM with ChangeNotifier {
   String? get jwtToken => _userCredModel!.jwtToken;
   String get userId => _userCredModel!.userId!;
   String get email => _userCredModel!.email!;
-  String? get userName => _userCredModel?.userName;
+
   String? get imageUrl => _userCredModel?.imageUrl;
 }

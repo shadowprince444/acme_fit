@@ -1,4 +1,10 @@
+import 'package:acme_fit/repository/user_data_repo.dart';
+import 'package:acme_fit/screens/home_screen.dart';
+import 'package:acme_fit/screens/initial_screen/initial_screen.dart';
+import 'package:acme_fit/screens/initial_screen/widgets/log_in_widget.dart';
 import 'package:acme_fit/viewmodels/authentication_vm.dart';
+import 'package:acme_fit/viewmodels/tracked_data_vm.dart';
+import 'package:acme_fit/viewmodels/user_data_vm.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +27,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AuthenticationVM()),
+        ChangeNotifierProvider(create: (context) => UserDataVM()),
+        ChangeNotifierProvider(create: (context) => TrackedDataVM()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -68,10 +76,11 @@ class _LogInPageState extends State<LogInPage> {
   userToken() async {
     String k = await user!.getIdToken();
     auths!.store(user!.uid, k, user!.displayName, user!.email, user!.photoURL);
+    UserDataRepo.getUserData(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return user == null ? const SizedBox() : const SizedBox();
+    return user == null ? const InitialScreen() : const HomeScreen();
   }
 }
