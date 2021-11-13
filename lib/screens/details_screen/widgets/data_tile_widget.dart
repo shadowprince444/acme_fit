@@ -32,11 +32,6 @@ class DataListTileWidget extends StatelessWidget {
       required this.title})
       : super(key: key);
 
-//   @override
-//   State<DataListTileWidget> createState() => _DataListTileWidgetState();
-// }
-
-// class _DataListTileWidgetState extends State<DataListTileWidget> {
   @override
   Widget build(BuildContext context) {
     return ColoredContainer(
@@ -112,7 +107,7 @@ class DataListTileWidget extends StatelessWidget {
                   TrackerDataRepo.editTrackedData(
                           trk,
                           Provider.of<AuthenticationVM>(context, listen: false)
-                              .userId)
+                              .userId!)
                       .then((value) => Navigator.pop(context));
                 } catch (e) {
                   Navigator.pop(context);
@@ -135,13 +130,6 @@ class DataListTileWidget extends StatelessWidget {
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly
                         ],
-                        // onChanged: (String? value) {
-                        //   if (value != null && value != "") {
-                        //     currentSystolicValue = int.parse(value);
-                        //   } else {
-                        //     currentSystolicValue = 0;
-                        //   }
-                        // }, // Only numbers can be entered
                       ),
                     ),
                     Padding(
@@ -163,14 +151,6 @@ class DataListTileWidget extends StatelessWidget {
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly
                         ],
-                        // onChanged: (String? value) {
-                        //   if (value != null && value != "") {
-                        //     currentDiastolicValue =
-                        //         int.parse(value);
-                        //   } else {
-                        //     currentDiastolicValue = 0;
-                        //   }
-                        // }, // Only numbers can be entered
                       ),
                     ),
                     Text(
@@ -208,7 +188,7 @@ class DataListTileWidget extends StatelessWidget {
                   TrackerDataRepo.editTrackedData(
                           trk,
                           Provider.of<AuthenticationVM>(context, listen: false)
-                              .userId)
+                              .userId!)
                       .then((value) => Navigator.pop(context));
                 } catch (e) {
                   Navigator.pop(context);
@@ -231,13 +211,6 @@ class DataListTileWidget extends StatelessWidget {
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly
                         ],
-                        // onChanged: (String? value) {
-                        //   if (value != null && value != "") {
-                        //     currentSystolicValue = int.parse(value);
-                        //   } else {
-                        //     currentSystolicValue = 0;
-                        //   }
-                        // }, // Only numbers can be entered
                       ),
                     ),
                     Text(
@@ -274,7 +247,7 @@ class DataListTileWidget extends StatelessWidget {
                   TrackerDataRepo.editTrackedData(
                           trk,
                           Provider.of<AuthenticationVM>(context, listen: false)
-                              .userId)
+                              .userId!)
                       .then((value) => Navigator.pop(context));
                 } catch (e) {
                   Navigator.pop(context);
@@ -297,13 +270,6 @@ class DataListTileWidget extends StatelessWidget {
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly
                         ],
-                        // onChanged: (String? value) {
-                        //   if (value != null && value != "") {
-                        //     currentSystolicValue = int.parse(value);
-                        //   } else {
-                        //     currentSystolicValue = 0;
-                        //   }
-                        // }, // Only numbers can be entered
                       ),
                     ),
                     Text(

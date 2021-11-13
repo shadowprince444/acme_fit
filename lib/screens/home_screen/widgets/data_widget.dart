@@ -43,51 +43,10 @@ class DataWidget extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          padding: EdgeInsets.all(gridHeight * 2),
+        SizedBox(
+          width: gridWidth * 30,
           child: icon,
         ),
-        // Stack(
-        //   children: [
-        //     SizedBox(
-        //       height: gridHeight * 18,
-        //       width: gridWidth * 30,
-        //       child: Center(
-        //         child: CircularPercentIndicator(
-        //           progressColor: primaryColor,
-        //           backgroundColor: Colors.transparent,
-        //           radius: gridHeight * 10,
-        //           center: Text(
-        //             "${percentage!.round()}%",
-        //             style: ScreenConfig.mulishH4,
-        //           ),
-        //           percent: percentage! / 100,
-        //         ),
-        //       ),
-        //     ),
-        //     percentage! > 50.0
-        //         ? Positioned(
-        //             right: 0,
-        //             child: Transform.rotate(
-        //                 angle: .7,
-        //                 child: Icon(
-        //                   Icons.arrow_upward_rounded,
-        //                   size: gridHeight * 4,
-        //                   color: primaryColor.withOpacity(.5),
-        //                 )),
-        //           )
-        //         : Positioned(
-        //             right: 0,
-        //             child: Transform.rotate(
-        //                 angle: 2.5,
-        //                 child: Icon(
-        //                   Icons.arrow_upward_rounded,
-        //                   size: gridHeight * 4,
-        //                   color: primaryColor.withOpacity(.5),
-        //                 )),
-        //           )
-        //   ],
-        // )
       ],
     );
   }

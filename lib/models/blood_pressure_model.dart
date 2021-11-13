@@ -1,5 +1,3 @@
-import 'package:acme_fit/models/health_tracker_data_model.dart';
-
 class BloodPressureModel {
   int? currentSystolicValue, currentDiastolicValue;
 

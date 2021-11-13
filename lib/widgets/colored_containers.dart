@@ -1,4 +1,3 @@
-import 'package:acme_fit/utils/screen_config.dart';
 import 'package:flutter/material.dart';
 
 class ColoredContainer extends StatelessWidget {

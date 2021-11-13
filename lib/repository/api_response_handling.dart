@@ -1,3 +1,3 @@
-enum ApiResponses { success, error }
+// enum ApiResponses { success, error }
 
-class ApiResponseHandling {}
+// class ApiResponseHandling {}

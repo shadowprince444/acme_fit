@@ -1,6 +1,5 @@
 import 'package:acme_fit/screens/initial_screen/widgets/log_in_widget.dart';
 import 'package:acme_fit/utils/screen_config.dart';
-import 'package:acme_fit/widgets/background_screen.dart';
 import 'package:flutter/material.dart';
 
 class InitialScreen extends StatefulWidget {
@@ -31,28 +30,29 @@ class _InitialScreenState extends State<InitialScreen> {
                     child: SingleChildScrollView(
                         child: Stack(
                       children: [
-                        Column(children: [
-                          SizedBox(
-                            height: gridHeight! * 8,
-                          ),
-                          SizedBox(
-                            height: gridHeight! * 28,
-                            width: gridWidth! * 60,
-                            child: Image.asset(
-                              "assets/app_logo.png",
-                              fit: BoxFit.contain,
+                        SizedBox(
+                          height: gridHeight! * 100,
+                          child: Column(children: [
+                            SizedBox(
+                              height: gridHeight! * 8,
                             ),
-                          ),
-                          isLogIn
-                              ? const LogInWidget()
-                              : SizedBox(
-                                  height: gridHeight! * 100,
-                                  width: gridWidth! * 100,
-                                  child: const Center(
-                                    child: Text("Coming Soon"),
+                            SizedBox(
+                              height: gridHeight! * 28,
+                              width: gridWidth! * 60,
+                              child: Image.asset(
+                                "assets/app_logo.png",
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                            isLogIn
+                                ? const LogInWidget()
+                                : const Expanded(
+                                    child: Center(
+                                      child: Text("Coming Soon"),
+                                    ),
                                   ),
-                                ),
-                        ]),
+                          ]),
+                        ),
                         Positioned(
                           left: gridWidth! * 20,
                           bottom: gridHeight! * 10,

@@ -1,4 +1,4 @@
-class Exercise{
-Duration? exerciseTime;
-Exercise({this.exerciseTime});
-}
+// class Exercise{
+// Duration? exerciseTime;
+// Exercise({this.exerciseTime});
+// }
