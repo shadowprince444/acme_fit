@@ -1,8 +1,12 @@
+import 'package:acme_fit/screens/details_screen/details_screen.dart';
+import 'package:acme_fit/screens/home_screen/widgets/data_widget.dart';
 import 'package:acme_fit/screens/initial_screen/initial_screen.dart';
 import 'package:acme_fit/screens/initial_screen/widgets/log_in_widget.dart';
+import 'package:acme_fit/screens/tracked_data_adding_screen/add_tracked_data_screen.dart';
 import 'package:acme_fit/utils/screen_config.dart';
 import 'package:acme_fit/viewmodels/authentication_vm.dart';
 import 'package:acme_fit/viewmodels/user_data_vm.dart';
+import 'package:acme_fit/widgets/colored_containers.dart';
 import 'package:acme_fit/widgets/network_image_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -31,13 +35,35 @@ class _HomeScreenState extends State<HomeScreen> {
     gridHeight = ScreenConfig.gridHeight;
     gridWidth = ScreenConfig.gridWidth;
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const AddTrackedDataScreen()));
+        },
+        child: Container(
+          decoration: BoxDecoration(
+              shape: BoxShape.circle, color: Colors.grey.withOpacity(.2)),
+          height: gridHeight! * 6,
+          width: gridHeight! * 6,
+          child: Icon(
+            Icons.add,
+            color: Colors.deepOrange,
+            size: gridHeight! * 4,
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
           enableFeedback: false,
           type: BottomNavigationBarType.fixed,
           elevation: 0,
           unselectedItemColor: Colors.grey,
           selectedItemColor: const Color(0xFF84D287),
-          backgroundColor: Colors.white,
+          //backgroundColor: Colors.blue,
           currentIndex: currentIndex,
           onTap: (int index) {
             setState(() {
@@ -52,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BottomNavigationBarItem(
               label: "",
-              icon: Icon(FontAwesomeIcons.wallet),
+              icon: Icon(FontAwesomeIcons.shoppingBag),
             ),
             BottomNavigationBarItem(
               label: "",
@@ -182,172 +208,84 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: gridHeight! * 2,
             ),
-            Consumer<AuthenticationVM>(builder: (context, authenticationVM, _) {
-              return Column(
-                children: [],
-              );
-            }),
-            ColoredDataContainer(
-              f1: () {},
+            ColoredContainer(
+              f1: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DetailesScreen(
+                            trackerDataType: TrackerDataType.bp)));
+              },
               gridWidth: gridWidth!,
               gridHeight: gridHeight!,
-              primaryColor: const Color(0xFFF39964),
               backgroundColor: const Color(0xFFFFEFE2),
-              title: "Blood Pressure",
-              icon: Icons.favorite,
-              lastReading: "80/120 mmHg",
-              subTitle: "Total Sales Today",
-            ),
-            SizedBox(
-              height: gridHeight! * 4,
-            ),
-            Consumer<AuthenticationVM>(builder: (context, authenticationVM, _) {
-              return ColoredDataContainer(
-                f1: () {},
-                gridWidth: gridWidth!,
+              child: DataWidget(
+                subtitle: "Previous Reading",
                 gridHeight: gridHeight!,
-                primaryColor: const Color(0xFF84D287),
-                backgroundColor: const Color(0xFFF0FCF0),
-                title: "Body Weight",
-                icon: Icons.speed_outlined,
-                lastReading: "80 Kg",
-                subTitle: "Perday Ratio",
-              );
-            }),
+                gridWidth: gridWidth!,
+                title: "Blood Pressure",
+                icon: Icon(
+                  Icons.favorite,
+                  color: const Color(0xFFF39964),
+                  size: gridHeight! * 6,
+                ),
+                lastReading: "80/120 mmHg",
+              ),
+            ),
             SizedBox(
               height: gridHeight! * 4,
             ),
-            ColoredDataContainer(
-              f1: () {},
+            ColoredContainer(
+              f1: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DetailesScreen(
+                            trackerDataType: TrackerDataType.weight)));
+              },
               gridWidth: gridWidth!,
               gridHeight: gridHeight!,
-              primaryColor: const Color(0xFF7FBDD2),
-              backgroundColor: const Color(0xFFE6F5FA),
-              title: "Daily Exercise",
-              icon: Icons.directions_run_rounded,
-              lastReading: "30 minutes",
-              subTitle: "Total Orders Today",
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ColoredDataContainer extends StatefulWidget {
-  const ColoredDataContainer(
-      {Key? key,
-      required this.f1,
-      required this.gridWidth,
-      required this.subTitle,
-      required this.gridHeight,
-      required this.backgroundColor,
-      required this.primaryColor,
-      required this.title,
-      this.icon,
-      this.lastReading})
-      : super(key: key);
-  final String title, subTitle;
-  final Color primaryColor, backgroundColor;
-  final IconData? icon;
-  final String? lastReading;
-  final double gridWidth, gridHeight;
-  final Function()? f1;
-
-  @override
-  State<ColoredDataContainer> createState() => _ColoredDataContainerState();
-}
-
-class _ColoredDataContainerState extends State<ColoredDataContainer> {
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: widget.f1!,
-      child: Container(
-        padding: EdgeInsets.symmetric(
-            horizontal: widget.gridWidth * 5,
-            vertical: widget.gridHeight * 2.5),
-        decoration: BoxDecoration(
-            color: widget.backgroundColor,
-            borderRadius:
-                BorderRadius.all(Radius.circular(widget.gridHeight * 4))),
-        height: widget.gridHeight * 18,
-        width: widget.gridWidth * 90,
-        child: Row(
-          children: [
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.only(left: widget.gridWidth * 5),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.title,
-                      style: ScreenConfig.mulishH3,
-                    ),
-                    Text(
-                      "Last Reading",
-                      style: ScreenConfig.mulishH5,
-                    ),
-                    Text(
-                      widget.lastReading ?? "-/-",
-                      style: ScreenConfig.mulishH2,
-                    )
-                  ],
+              backgroundColor: const Color(0xFFF0FCF0),
+              child: DataWidget(
+                subtitle: "Previous Reading",
+                gridHeight: gridHeight!,
+                gridWidth: gridWidth!,
+                title: "Body Weight",
+                icon: Icon(
+                  Icons.speed_outlined,
+                  color: const Color(0xFFF39964),
+                  size: gridHeight! * 6,
                 ),
+                lastReading: "80 Kg",
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(widget.gridHeight * 2),
-              child: Icon(
-                widget.icon,
-                color: widget.primaryColor,
-                size: widget.gridHeight * 6,
+            SizedBox(
+              height: gridHeight! * 4,
+            ),
+            ColoredContainer(
+              f1: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DetailesScreen(
+                            trackerDataType: TrackerDataType.exercise)));
+              },
+              gridWidth: gridWidth!,
+              gridHeight: gridHeight!,
+              backgroundColor: const Color(0xFFE6F5FA),
+              child: DataWidget(
+                subtitle: "Previous Reading",
+                gridHeight: gridHeight!,
+                gridWidth: gridWidth!,
+                title: "Daily Exercise",
+                icon: Icon(
+                  Icons.directions_run_rounded,
+                  color: const Color(0xFFF39964),
+                  size: gridHeight! * 6,
+                ),
+                lastReading: "30 minutes",
               ),
             ),
-            // Stack(
-            //   children: [
-            //     SizedBox(
-            //       height: widget.gridHeight * 18,
-            //       width: widget.gridWidth * 30,
-            //       child: Center(
-            //         child: CircularPercentIndicator(
-            //           progressColor: widget.primaryColor,
-            //           backgroundColor: Colors.transparent,
-            //           radius: widget.gridHeight * 10,
-            //           center: Text(
-            //             "${widget.percentage!.round()}%",
-            //             style: ScreenConfig.mulishH4,
-            //           ),
-            //           percent: widget.percentage! / 100,
-            //         ),
-            //       ),
-            //     ),
-            //     widget.percentage! > 50.0
-            //         ? Positioned(
-            //             right: 0,
-            //             child: Transform.rotate(
-            //                 angle: .7,
-            //                 child: Icon(
-            //                   Icons.arrow_upward_rounded,
-            //                   size: widget.gridHeight * 4,
-            //                   color: widget.primaryColor.withOpacity(.5),
-            //                 )),
-            //           )
-            //         : Positioned(
-            //             right: 0,
-            //             child: Transform.rotate(
-            //                 angle: 2.5,
-            //                 child: Icon(
-            //                   Icons.arrow_upward_rounded,
-            //                   size: widget.gridHeight * 4,
-            //                   color: widget.primaryColor.withOpacity(.5),
-            //                 )),
-            //           )
-            //   ],
-            // )
           ],
         ),
       ),

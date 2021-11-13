@@ -1,5 +1,5 @@
 import 'package:acme_fit/repository/user_data_repo.dart';
-import 'package:acme_fit/screens/home_screen.dart';
+import 'package:acme_fit/screens/home_screen/home_screen.dart';
 import 'package:acme_fit/screens/initial_screen/initial_screen.dart';
 import 'package:acme_fit/screens/initial_screen/widgets/log_in_widget.dart';
 import 'package:acme_fit/viewmodels/authentication_vm.dart';

@@ -7,13 +7,17 @@ class TrackerDataModel {
   String? documentId;
   DateTime? submittedTime;
   TrackerDataModel(
-      {this.bloodPressureModel, this.currentWeight, this.exerciseTime});
-  TrackerDataModel.toJson(Map<String, dynamic> map, String id) {
+      {this.bloodPressureModel,
+      this.currentWeight,
+      this.exerciseTime,
+      this.submittedTime});
+
+  TrackerDataModel.fromJson(Map<String, dynamic> map, String id) {
     exerciseTime = map["exerciseTime"];
-    bloodPressureModel = BloodPressureModel.fromJson(map);
-    currentWeight = map["currentWeight"];
+    bloodPressureModel = BloodPressureModel.fromJson(map["bloodPressure"]);
+    currentWeight = map["currentWeight"]?.toDouble() ?? 0.0;
     documentId = id;
-    submittedTime = map["SystolicValue"];
+    submittedTime = map["submittedTime"]?.toDate();
   }
   Map<String, dynamic> toJson() {
     return {
