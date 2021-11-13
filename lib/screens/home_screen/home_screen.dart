@@ -185,6 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       }
                       if (snapshot.hasData) {
+                        print(snapshot.data!.lastSystolicValue);
                         return Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [

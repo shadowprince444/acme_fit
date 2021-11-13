@@ -35,6 +35,7 @@ class UserCollectionDataModel {
     averageWeight = (map["totalWeight"] ?? 0) / map["numberOfRecords"] ?? 1.0;
 
     lastExcerciseTime = map["lastExercise"] ?? 0;
+    print(map["lastExercise"]);
     lastSystolicValue = map["lastSystolicValue"]?.toDouble() ?? 0.0;
     lastDiastolicValue = map["lastDiastolicValue"]?.toDouble() ?? 0.0;
     lastWeight = map["lastWeight"]?.toDouble() ?? 0.0;

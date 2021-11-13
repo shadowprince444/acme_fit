@@ -85,7 +85,11 @@ class _AddTrackedDataScreenState extends State<AddTrackedDataScreen> {
                 if (currentWeightController.text == "" ||
                     diastolicValueController.text == "" ||
                     systolicValueController.text == "" ||
-                    exerciseTimeController.text == "") {
+                    exerciseTimeController.text == "" ||
+                    currentWeightController.text == "0" ||
+                    diastolicValueController.text == "0" ||
+                    systolicValueController.text == "0" ||
+                    exerciseTimeController.text == "0") {
                   showDialog(
                       context: context,
                       builder: (context) => CustomAlertDialogueBox(
@@ -132,7 +136,9 @@ class _AddTrackedDataScreenState extends State<AddTrackedDataScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                       icon: Icon(
                         Icons.arrow_back,
                         color: Colors.black,
