@@ -26,13 +26,13 @@ class UserCollectionDataModel {
     bloodGroup = map["bloodGroup"] ?? "N/A";
     age = map["age"] ?? 0;
     averageExcerciseTime =
-        (map["totalExercise"] ?? 0) / map["numberOfRecords"] ?? 1.0;
+        (map["totalExercise"] ?? 0) / (map["numberOfRecords"] ?? 1.0);
 
     averageSystolicValue =
-        ((map["totalSystolicValue"] ?? 0) / map["numberOfRecords"] ?? 1.0);
+        (map["totalSystolicValue"] ?? 0) / (map["numberOfRecords"] ?? 1.0);
     averageDiastolicValue =
-        (map["totalDiastolicValue"] ?? 0) / map["numberOfRecords"] ?? 1.0;
-    averageWeight = (map["totalWeight"] ?? 0) / map["numberOfRecords"] ?? 1.0;
+        (map["totalDiastolicValue"] ?? 0) / (map["numberOfRecords"] ?? 1.0);
+    averageWeight = (map["totalWeight"] ?? 0) / (map["numberOfRecords"] ?? 1.0);
 
     lastExcerciseTime = map["lastExercise"] ?? 0;
     print(map["lastExercise"]);
